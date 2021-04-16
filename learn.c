@@ -33,6 +33,7 @@ void test_endian1(){
 
 void test_endia2(){
     int a[]={1,2,3};
+    
     int *ptr1 = (int*)(&a+1);
     int * ptr2 = (int*)((int)a+1);
     printf("0x%d,%x\n", *ptr1, *ptr2);
@@ -44,4 +45,24 @@ void test_endia2(){
         printf("%d ", *ptrc);
         ptrc++;
     }  
+}
+
+//typedef 与const一起，const修饰的变量
+void test_typedef_const(){
+    typedef struct student{
+        int num;
+    } Str_stu, *Ptr_stu;
+    Str_stu s1;
+    s1.num=1;
+    // 测试ptr1这个指针是不能指向其他地址，还是可以指向其他地址，但是其指向的地址内容不能变化
+    const Ptr_stu ptr1 = &s1;
+    ptr1->num = 11;
+    printf("s1: %d\n", s1.num); //通过指针修改了值，说明并不是ptr1指向的内容不能变
+
+    Str_stu s2;
+    s2.num=3;
+    // ptr1 = &s2; // 编译错误，说明ptr1指向的位置不能变化
+
+    Ptr_stu const ptr2 = &s1; // const放在Ptr_stu前和后是一样的
+    // ptr2 = &s2;
 }
