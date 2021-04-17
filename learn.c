@@ -66,3 +66,19 @@ void test_typedef_const(){
     Ptr_stu const ptr2 = &s1; // const放在Ptr_stu前和后是一样的
     // ptr2 = &s2;
 }
+
+void test_union(){
+    union data{
+        int n;
+        char ch;
+        short m;
+    };
+    union data a;
+    printf("size of union data:%d,size of a: %d\n", sizeof(union data), sizeof(a));
+    a.m = 0x1234;
+    printf("%x, %x, %x\n", a.n, a.ch, a.m);
+    a.ch = 0x56;
+    printf("%x, %x, %x\n", a.n, a.ch, a.m);
+    a.n = 0x98765432;
+    printf("%x, %x, %x\n", a.n, a.ch, a.m);
+}
