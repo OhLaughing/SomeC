@@ -14,9 +14,18 @@ void test_const(){
 void modify_const_with_point(){
     const int a =1;
     int* p = (int *)&a;
-    printf("%p, %p, %p, %d, %d\n", p, &a, &p, a, *p);
+    printf("%p, %p, %p, %d, %d\n", p, &a, &p, a, *p); // 打印a和*p相同
     *p = 21;
-    printf("%p, %p, %p, %d, %d\n", p, &a, &p, a, *p);
+    printf("%p, %p, %p, %d, %d\n", p, &a, &p, a, *p); //a还是1，*p=21
+    // 出现a和*p不同的原因是a由const描述，在编译时对a进行优化，把a的值缓存在寄存器中（目的是为了读取效率更高）
+    // 通过*p修改&a地址的值，寄存器中缓存的值并没有改变，因此出现打印a和*p的值不同
+
+    const volatile int b = 1;
+    int* p1 = &b;
+    printf("%p, %p, %p, %d, %d\n", p1, &b, &p1, b, *p1);
+    *p1 = 21;
+    printf("%p, %p, %p, %d, %d\n", p1, &b, &p1, b, *p1);
+    //打印b和*p1的值相同，原因：b用volatile修饰，volatile的作用是提示编译器，该变量是易变的，不能优化，每次都要重内存读取值
 }
 
 void test_endian1(){
