@@ -1,19 +1,28 @@
 #include <stdio.h>
 #include "learn.h"
+#include<ctype.h>
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 #define MAXLINE 100
 
-char pattern[] = "ould"; 
+void testisalpha(){
+	printf("%d\n",isalpha('1'));
+	printf("%d\n",isalpha('a'));
+	printf("%d\n",isalpha('A'));
+}
 
-int main(int argc, char** argv) {
-	printf("helloworld\n");
-	char line[MAXLINE];
-	int found=0;
-	while(getline(line,MAXLINE))
-		if(strindex(line,pattern)>=0){
-			printf("%s",line);
-			found++;
-		}
+void testsozeofstruct(){
+	struct st{
+		char c;
+		int i;
+		struct st* left;
 	
-	return found;
+	};
+	printf("sizeof struct st: %d\n", sizeof(struct st));
+} 
+void testkeywordNum(void);
+void testgetWord(void);
+int main(int argc, char** argv) {
+	 testsozeofstruct(); 
+	testgetWord();
+	
 }
