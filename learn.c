@@ -103,3 +103,7 @@ void testUnsignedInt(){
     }
  
 }
+void testEof(){
+    printf("%d\n", EOF);
+    printf("%d\n", sizeof(EOF));
+}
