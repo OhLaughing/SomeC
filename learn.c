@@ -91,3 +91,15 @@ void test_union(){
     a.n = 0x98765432;
     printf("%x, %x, %x\n", a.n, a.ch, a.m);
 }
+// int与unsigned int比较
+void testUnsignedInt(){
+      int ii = -1;
+    unsigned int ui=2;
+    if (ii < ui) {
+         printf("OK\n");
+    }
+    else {
+         printf("error\n");
+    }
+ 
+}
