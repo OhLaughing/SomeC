@@ -4,6 +4,7 @@
 int getop(char []);
 void push(double);
 double pop();
+double atof(char s[]);
 void reversePoland(){
     int type;
     double op2;
@@ -11,6 +12,8 @@ void reversePoland(){
     while((type=getop(s))!=EOF){
         switch(type){
         case NUMBER:
+            printf("%s\n", s);
+            printf("%.8g\n", atof(s));
             push(atof(s));
             break;
         case  '+':
@@ -29,6 +32,9 @@ void reversePoland(){
                 push(pop()/op2);
             else
                 printf("error: zero divisor\n");
+            break;
+        case  '\n':
+            printf("\t%.8g\n", pop());
             break;
         default:
             printf("error: unknown command %s\n", s);
