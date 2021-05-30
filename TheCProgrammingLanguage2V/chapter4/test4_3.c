@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 #define MAXOP 100
 #define NUMBER '0'
@@ -5,7 +6,7 @@ int getop(char []);
 void push(double);
 double pop();
 double atof(char s[]);
-void reversePoland(){
+void reversePoland_1(){
     int type;
     double op2;
     char s[MAXOP];
@@ -24,6 +25,13 @@ void reversePoland(){
             op2 = pop();
             push(pop()-op2);
             break;
+        case  '%':
+            op2 = pop();
+            if(op2 != 0.0)
+              push(fmod(pop(),op2));
+            else
+                printf("error: zero divisor\n");
+            break;
         case  '/':
             op2 = pop();
             if(op2!=0.0)
@@ -40,4 +48,9 @@ void reversePoland(){
 
         }
     }
+}
+void fmodtest(){
+    double d1,d2;
+    d1 = -2.3, d2 = 1.1;
+    printf("d1:%f, d2:%f, %f\n", d1,d2, fmod(d1,d2));
 }
